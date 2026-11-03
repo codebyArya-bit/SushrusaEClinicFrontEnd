@@ -423,6 +423,7 @@ const FindDoctorsPage: React.FC<FindDoctorsPageProps> = ({ isOpen, onClose }) =>
                 </div>
               ))}
             </div>
+            )}
 
             {/* Pagination */}
             {!loading && !error && doctors.length > 0 && (pagination.hasNext || pagination.hasPrevious) && (
