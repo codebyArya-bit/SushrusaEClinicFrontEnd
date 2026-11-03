@@ -61,9 +61,12 @@ export function formatDateTime(dateTimeString: string): string {
   }
 }
 
-// API base URL utility
-export const API_BASE_URL = 'https://sushrusaeclinic.com';
-// export const API_BASE_URL = 'http://127.0.0.1:8000';
+// API base URL utility: local Django backend during development, production otherwise.
+// Override in .env.local with VITE_API_BASE_URL when using a different API host.
+export const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL?.trim() ||
+  (import.meta.env.DEV ? 'http://127.0.0.1:8000' : 'https://sushrusaeclinic.com')
+).replace(/\/$/, '');
 
 import axios from 'axios';
 export const api = axios.create({

@@ -92,6 +92,11 @@ const VitalSignsPanel: React.FC<VitalSignsPanelProps> = ({ vitalSigns, onVitalSi
     }
   };
 
+  const renderStatusIcon = (status: string) => {
+    const StatusIcon = getStatusIcon(status);
+    return <StatusIcon className="w-3 h-3 mr-1" />;
+  };
+
   const calculateBMI = () => {
     const weight = parseFloat(vitalSigns.weight);
     const height = parseFloat(vitalSigns.height);
@@ -124,7 +129,7 @@ const VitalSignsPanel: React.FC<VitalSignsPanelProps> = ({ vitalSigns, onVitalSi
             </Label>
             {vitalSigns.pulse && (
               <Badge className={`text-xs ${getStatusColor(getVitalSignStatus('pulse', vitalSigns.pulse))}`}>
-                <getStatusIcon(getVitalSignStatus('pulse', vitalSigns.pulse)) className="w-3 h-3 mr-1" />
+                {renderStatusIcon(getVitalSignStatus('pulse', vitalSigns.pulse))}
                 {getVitalSignStatus('pulse', vitalSigns.pulse)}
               </Badge>
             )}
@@ -148,7 +153,7 @@ const VitalSignsPanel: React.FC<VitalSignsPanelProps> = ({ vitalSigns, onVitalSi
             </Label>
             {(vitalSigns.bloodPressureSystolic || vitalSigns.bloodPressureDiastolic) && (
               <Badge className={`text-xs ${getStatusColor(getVitalSignStatus('bloodPressureSystolic', vitalSigns.bloodPressureSystolic))}`}>
-                <getStatusIcon(getVitalSignStatus('bloodPressureSystolic', vitalSigns.bloodPressureSystolic)) className="w-3 h-3 mr-1" />
+                {renderStatusIcon(getVitalSignStatus('bloodPressureSystolic', vitalSigns.bloodPressureSystolic))}
                 BP Status
               </Badge>
             )}
@@ -188,7 +193,7 @@ const VitalSignsPanel: React.FC<VitalSignsPanelProps> = ({ vitalSigns, onVitalSi
             </Label>
             {vitalSigns.temperature && (
               <Badge className={`text-xs ${getStatusColor(getVitalSignStatus('temperature', vitalSigns.temperature))}`}>
-                <getStatusIcon(getVitalSignStatus('temperature', vitalSigns.temperature)) className="w-3 h-3 mr-1" />
+                {renderStatusIcon(getVitalSignStatus('temperature', vitalSigns.temperature))}
                 {getVitalSignStatus('temperature', vitalSigns.temperature)}
               </Badge>
             )}
@@ -254,7 +259,7 @@ const VitalSignsPanel: React.FC<VitalSignsPanelProps> = ({ vitalSigns, onVitalSi
             </Label>
             {vitalSigns.oxygenSaturation && (
               <Badge className={`text-xs ${getStatusColor(getVitalSignStatus('oxygenSaturation', vitalSigns.oxygenSaturation))}`}>
-                <getStatusIcon(getVitalSignStatus('oxygenSaturation', vitalSigns.oxygenSaturation)) className="w-3 h-3 mr-1" />
+                {renderStatusIcon(getVitalSignStatus('oxygenSaturation', vitalSigns.oxygenSaturation))}
                 {getVitalSignStatus('oxygenSaturation', vitalSigns.oxygenSaturation)}
               </Badge>
             )}
