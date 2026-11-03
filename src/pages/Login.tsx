@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Heart, ArrowLeft, Phone, Shield, Clock, CheckCircle, ArrowRight, Eye, EyeOff, Lock, User, Smartphone } from 'lucide-react';
+import { Heart, ArrowLeft, Phone, Shield, Clock, CheckCircle, ArrowRight, Eye, EyeOff, Lock, User, Smartphone, MessageCircle } from 'lucide-react';
 import axios from 'axios';
 import { api } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
@@ -284,12 +284,20 @@ const Login = () => {
           <Card className="shadow-2xl border-0 bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden">
             <CardHeader className="space-y-2 pb-6 pt-8">
               <CardTitle className="text-2xl font-bold text-center text-gray-900">
-                {step === 'phone' ? 'Secure Sign In' : 'Verify Your Identity'}
+                {step === 'phone' ? 'Secure Sign In' : 'Check Your WhatsApp'}
               </CardTitle>
               <CardDescription className="text-center text-gray-600">
                 {step === 'phone' 
-                  ? 'We\'ll send you a secure verification code via SMS' 
-                  : `Verification code sent to ${phoneNumber}`
+                  ? 'We\'ll send you a secure verification code via WhatsApp' 
+                  : (
+                    <span className="flex flex-col items-center gap-1">
+                      <span>Code sent to <strong>+91 {phoneNumber}</strong> on WhatsApp</span>
+                      <span className="inline-flex items-center gap-1 text-green-600 font-medium text-xs mt-1">
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        Open WhatsApp to find your code
+                      </span>
+                    </span>
+                  )
                 }
               </CardDescription>
             </CardHeader>
@@ -352,7 +360,7 @@ const Login = () => {
                     {isSubmitting ? (
                       <div className="flex items-center justify-center">
                         <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-3"></div>
-                        Sending verification code...
+                        Sending WhatsApp code...
                       </div>
                     ) : (
                       <div className="flex items-center justify-center">
