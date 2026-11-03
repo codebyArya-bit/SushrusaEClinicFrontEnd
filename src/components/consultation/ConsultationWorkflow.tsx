@@ -101,6 +101,7 @@ const ConsultationWorkflow: React.FC<ConsultationWorkflowProps> = ({
   ];
 
   const currentStepIndex = steps.findIndex(step => step.id === currentStep);
+  const CurrentStepIcon = steps[currentStepIndex]?.icon;
 
   const handleNext = () => {
     const nextIndex = currentStepIndex + 1;
@@ -498,7 +499,7 @@ const ConsultationWorkflow: React.FC<ConsultationWorkflowProps> = ({
       <Card className="border-0 shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg font-semibold flex items-center">
-            <steps[currentStepIndex]?.icon className="w-5 h-5 mr-2" />
+            {CurrentStepIcon && <CurrentStepIcon className="w-5 h-5 mr-2" />}
             {steps[currentStepIndex]?.label}
           </CardTitle>
         </CardHeader>
